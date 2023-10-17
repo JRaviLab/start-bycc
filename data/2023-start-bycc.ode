@@ -1,0 +1,759 @@
+#Functions
+
+Mass_Act(k1)=k1
+Mass_0001(k1,S1)=k1 * S1
+Mass_0002(k1,S1,S2)=k1 * S1 * S2
+Michaeli(M1,J1,k1,S1)=k1 * M1 * S1 / (J1 + S1)
+BB(A1,A2,A3,A4)=A2 - A1 + A3 * A2 + A4 * A1
+GK(A1,A2,A3,A4)=2.0 * A4 * A1 / (BB(A1,A2,A3,A4) + (BB(A1,A2,A3,A4) ^ 2.0 - 4.0 * (A2 - A1) * A4 * A1)^.5)
+
+#Compartment Equations
+
+
+#Variables
+
+T19=1.0*IEP+1.0*IE
+aux T19=T19
+T18=1.0*TEM1GDP+1.0*TEM1GTP
+aux T18=T18
+T17=1.0*CDC15+1.0*CDC15i
+aux T17=T17
+T16=1.0*ESP1+1.0*PE
+aux T16=T16
+T15=1.0*PROM2+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SWI4B+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB
+aux T15=T15
+T14=1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+1.0*SWI4B+4.0*SWI4C+1.0*SWI4F+4.0*SWI4PC+1.0*SWI4P+1.0*SWI4+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T14=T14
+T13=1.0*W4B+4.0*WHI5C+4.0*WHI5PC+1.0*WHI5PN+1.0*WHI5+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T13=T13
+T12=1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*PROM5+1.0*WMB
+aux T12=T12
+T11=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*MBP1+1.0*WMB
+aux T11=T11
+T10=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+4.0*SWI6C+4.0*SWI6PQC+1.0*SWI6PQ+1.0*SWI6P+4.0*SWI6QC+1.0*SWI6+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T10=T10
+T9=1.0*IEP+1.0*IE
+aux T9=T9
+T8=1.0*TEM1GDP+1.0*TEM1GTP
+aux T8=T8
+T7=1.0*CDC15+1.0*CDC15i
+aux T7=T7
+T6=1.0*ESP1+1.0*PE
+aux T6=T6
+T5=1.0*PROM2+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SWI4B+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB
+aux T5=T5
+T4=1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+1.0*SWI4B+4.0*SWI4C+1.0*SWI4F+4.0*SWI4PC+1.0*SWI4P+1.0*SWI4+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T4=T4
+T3=1.0*W4B+4.0*WHI5C+4.0*WHI5PC+1.0*WHI5PN+1.0*WHI5+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T3=T3
+T2=1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*PROM5+1.0*WMB
+aux T2=T2
+T1=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*MBP1+1.0*WMB
+aux T1=T1
+T0=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+4.0*SWI6C+4.0*SWI6PQC+1.0*SWI6PQ+1.0*SWI6P+4.0*SWI6QC+1.0*SWI6+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux T0=T0
+IET=1.0*IEP+1.0*IE
+aux IET=IET
+TEM1T=1.0*TEM1GDP+1.0*TEM1GTP
+aux TEM1T=TEM1T
+CDC15T=1.0*CDC15+1.0*CDC15i
+aux CDC15T=CDC15T
+ESP1T=1.0*ESP1+1.0*PE
+aux ESP1T=ESP1T
+PROM2T=1.0*PROM2+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SWI4B+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB
+aux PROM2T=PROM2T
+SWI4T=1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+1.0*SWI4B+4.0*SWI4C+1.0*SWI4F+4.0*SWI4PC+1.0*SWI4P+1.0*SWI4+1.0*W4B+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux SWI4T=SWI4T
+WHI5T=1.0*W4B+4.0*WHI5C+4.0*WHI5PC+1.0*WHI5PN+1.0*WHI5+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux WHI5T=WHI5T
+PROM5T=1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*PROM5+1.0*WMB
+aux PROM5T=PROM5T
+MBP1T=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*MBP1+1.0*WMB
+aux MBP1T=MBP1T
+SWI6T=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+4.0*SWI6C+4.0*SWI6PQC+1.0*SWI6PQ+1.0*SWI6P+4.0*SWI6QC+1.0*SWI6+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
+aux SWI6T=SWI6T
+D=1.026/mu-32.0
+aux D=D
+F=exp((-mu)*D)
+aux F=F
+YDJ1=kydj1*MASS
+aux YDJ1=YDJ1
+SSA1=(kssa0+kssab2*CLB2+kssaw5*SWI5)*(90.0/mdt)
+aux SSA1=SSA1
+Vacln3=kgkcln3*YDJ1
+aux Vacln3=Vacln3
+CLN3=if(CLN3T==0.0)then(0.0)else(CLN3T*MASS*GK(Vacln3,SSA1,Jacln3*CLN3T,Jicln3*CLN3T))
+aux CLN3=CLN3
+BCK2=if(BCK2T==0.0)then(0.0)else(BCK2T*MASS*GK(Vacln3,SSA1,Jabck2*BCK2T,Jibck2*BCK2T))
+aux BCK2=BCK2
+MCM1=GK(kamcm*CLB2,kimcm,Jamcm,Jimcm)
+aux MCM1=MCM1
+Vdb2=kdb2_p+kdb2_pp*CDH1+kdb2_ppp*CDC20
+aux Vdb2=Vdb2
+Vdb5=kdb5_p+kdb5_pp*CDC20
+aux Vdb5=Vdb5
+Vd2c1=kd2c1*(ec1n3*CLN3+ec1k2*BCK2+ec1n2*CLN2+ec1b5*CLB5+ec1b2*CLB2)
+aux Vd2c1=Vd2c1
+Vd2f6=kd2f6*(ef6n3*CLN3+ef6k2*BCK2+ef6n2*CLN2+ef6b5*CLB5+ef6b2*CLB2)
+aux Vd2f6=Vd2f6
+Vppc1=kppc1*CDC14
+aux Vppc1=Vppc1
+Vppf6=kppf6*CDC14
+aux Vppf6=Vppf6
+Vkpc1=kd1c1+Vd2c1/(Jd2c1+SIC1+C2+C5)
+aux Vkpc1=Vkpc1
+Vkpf6=kd1f6+Vd2f6/(Jd2f6+CDC6+F2+F5)
+aux Vkpf6=Vkpf6
+Vaiep=kaiep*CLB2
+aux Vaiep=Vaiep
+Vd20=kd20+kd20_p*CDH1
+aux Vd20=Vd20
+Vacdh=kacdh_p+kacdh_pp*CDC14
+aux Vacdh=Vacdh
+Vicdh=kicdh_p+kicdh_pp*(eicdhn3*CLN3+eicdhn2*CLN2+eicdhb5*CLB5+eicdhb2*CLB2)
+aux Vicdh=Vicdh
+Vkpnet=kpnet_p+kpnet_pp*CDC15
+aux Vkpnet=Vkpnet
+PP2A=PP2AT*(1.0+ki*kpp*ESP1)/(1.0+ki*ESP1)
+aux PP2A=PP2A
+Vppnet=kppnet_p+kppn_0001*PP2A
+aux Vppnet=Vppnet
+Vdpds=kdpds_p+kdpds_pp*CDC20+kdpd_0001*CDH1
+aux Vdpds=Vdpds
+Vpn=epn3*CLN3+epn2*CLN2+epb5*CLB5+epk2*BCK2
+aux Vpn=Vpn
+Vpcln=Vpnmax*(Vpn^N/(Jpn^N+Vpn^N))
+aux Vpcln=Vpcln
+Vppcln=kppcln+kppcln_p*CDC14
+aux Vppcln=Vppcln
+Vpnm=epn3m*CLN3+epn2m*CLN2+epb5m*CLB5+epk2m*BCK2
+aux Vpnm=Vpnm
+Vpclnm=Vpmaxm*(Vpnm^N/(Jpn^N+Vpnm^N))
+aux Vpclnm=Vpclnm
+Vpnw=epn3w*CLN3+epn2w*CLN2+epb5w*CLB5+epk2w*BCK2
+aux Vpnw=Vpnw
+Vpclnw=Vnmaxw*(Vpnw^N/(Jpn^N+Vpnw^N))
+aux Vpclnw=Vpclnw
+Vpclb=kp_p+kp_pp*CLB2
+aux Vpclb=Vpclb
+Vpp14=kpp14*CDC14
+aux Vpp14=Vpp14
+Vpclb26=kp_p+kp_pp*CLB2+epb5q*CLB5
+aux Vpclb26=Vpclb26
+Vppase=PPase
+aux Vppase=Vppase
+CLB2T=CLB2+C2+F2+C2P+F2P
+aux CLB2T=CLB2T
+CLB5T=CLB5+C5+F5+C5P+F5P
+aux CLB5T=CLB5T
+CDC14T=CDC14+RENT+RENTP
+aux CDC14T=CDC14T
+NET1T=NET1+NET1P+RENT+RENTP
+aux NET1T=NET1T
+SIC1T=SIC1+C2+C5+SIC1P+C2P+C5P
+aux SIC1T=SIC1T
+CDC6T=CDC6+F2+F5+CDC6P+F2P+F5P
+aux CDC6T=CDC6T
+CKIT=SIC1T+CDC6T
+aux CKIT=CKIT
+SBFact=kasbf1*SBFB+kasbf3*(SBFB6P+SBFB6PQ)+kasbf4*(WSB6P+WSB6PQ)+kasbf5*WSB5P+kasbf6*SWI4B
+aux SBFact=SBFact
+MBFact=MBFa
+aux MBFact=MBFact
+SWI6CTOT=SWI6C+SWI6QC+SWI6PQC
+aux SWI6CTOT=SWI6CTOT
+SBFa1=kasbf1*SBFB
+aux SBFa1=SBFa1
+SBFa2=kasbf3*(SBFB6P+SBFB6PQ)
+aux SBFa2=SBFa2
+SBFa3=kasbf4*(WSB6P+WSB6PQ)
+aux SBFa3=SBFa3
+SBFa4=kasbf5*WSB5P
+aux SBFa4=SBFa4
+SBFa5=kasbf6*SWI4B
+aux SBFa5=SBFa5
+SWI4nucf=if(SWI4T<1.0E-8)then(0.0)else((SWI4T-4.0*(SWI4C+SWI4PC))/SWI4T)
+aux SWI4nucf=SWI4nucf
+WHI5nucf=if(WHI5T<1.0E-8)then(0.0)else((WHI5T-4.0*(WHI5C+WHI5PC))/WHI5T)
+aux WHI5nucf=WHI5nucf
+SWI6nucf=if(SWI6T<1.0E-8)then(0.0)else((SWI6T-4.0*(SWI6C+SWI6QC+SWI6PQC))/SWI6T)
+aux SWI6nucf=SWI6nucf
+SWI4cycf=1.0-SWI4nucf
+aux SWI4cycf=SWI4cycf
+WHI5cycf=1.0-WHI5nucf
+aux WHI5cycf=WHI5cycf
+SWI6cycf=1.0-SWI6nucf
+aux SWI6cycf=SWI6cycf
+CLN310x=10.0*CLN3
+aux CLN310x=CLN310x
+
+#Parameter Equations
+
+mu=(log(2.0))/mdt
+
+#Dependent Species
+
+
+#Independent Species
+
+dMASS/dt=(mu*MASS*(1.0-MASS/MAXMASS))
+
+dCLN2/dt=(ksn2_p+ksn2_pp*SBFact+ksn2_ppp*MBFact)-(kdn2*CLN2)
+
+dCLB5/dt=((ksb5_p+ksb5_pp*SBFact+ksb5_ppp*MBFact)*MASS)-(Vdb5*CLB5)-(kasb5*CLB5*SIC1)+(kdib5*C5)+(kd3c1*C5P)-(kasf5*CLB5*CDC6)+(kdif5*F5)+(kd3f6*F5P)
+
+dCLB2/dt=((ksb2_p+ksb2_pp*MCM1)*MASS)-(Vdb2*CLB2)-(kasb2*CLB2*SIC1)+(kdib2*C2)+(kd3c1*C2P)-(kasf2*CLB2*CDC6)+(kdif2*F2)+(kd3f6*F2P)
+
+dSIC1/dt=(ksc1_p+ksc1_pp*SWI5)-(kdc1*SIC1)-(Vkpc1*SIC1)+(Vppc1*SIC1P)-(kasb2*CLB2*SIC1)+(kdib2*C2)-(kasb5*CLB5*SIC1)+(kdib5*C5)+(Vdb2*C2)+(Vdb5*C5)
+
+dSIC1P/dt=(Vkpc1*SIC1)-(Vppc1*SIC1P)-(kd3c1*SIC1P)+(Vdb2*C2P)+(Vdb5*C5P)
+
+dC2/dt=(kasb2*CLB2*SIC1)-(kdib2*C2)-(Vkpc1*C2)+(Vppc1*C2P)-(Vdb2*C2)
+
+dC5/dt=(kasb5*CLB5*SIC1)-(kdib5*C5)-(Vkpc1*C5)+(Vppc1*C5P)-(Vdb5*C5)
+
+dC2P/dt=(Vkpc1*C2)-(Vppc1*C2P)-(kd3c1*C2P)-(Vdb2*C2P)
+
+dC5P/dt=(Vkpc1*C5)-(Vppc1*C5P)-(kd3c1*C5P)-(Vdb5*C5P)
+
+dCDC6/dt=(ksf6_p+ksf6_pp*SWI5+ksf6_ppp*SBFact)-(kdf6*CDC6)-(Vkpf6*CDC6)+(Vppf6*CDC6P)-(kasf2*CLB2*CDC6)+(kdif2*F2)-(kasf5*CLB5*CDC6)+(kdif5*F5)+(Vdb2*F2)+(Vdb5*F5)
+
+dCDC6P/dt=(Vkpf6*CDC6)-(Vppf6*CDC6P)-(kd3f6*CDC6P)+(Vdb2*F2P)+(Vdb5*F5P)
+
+dF2/dt=(kasf2*CLB2*CDC6)-(kdif2*F2)-(Vkpf6*F2)+(Vppf6*F2P)-(Vdb2*F2)
+
+dF5/dt=(kasf5*CLB5*CDC6)-(kdif5*F5)-(Vkpf6*F5)+(Vppf6*F5P)-(Vdb5*F5)
+
+dF2P/dt=(Vkpf6*F2)-(Vppf6*F2P)-(kd3f6*F2P)-(Vdb2*F2P)
+
+dF5P/dt=(Vkpf6*F5)-(Vppf6*F5P)-(kd3f6*F5P)-(Vdb5*F5P)
+
+dSWI5/dt=(ksswi_p+ksswi_pp*MCM1)-(kdswi*SWI5)-((kiswi*CLB2)*SWI5)+(kaswi*CDC14)*SWI5P
+
+dSWI5P/dt=(kiswi*CLB2)*SWI5-((kaswi*CDC14)*SWI5P)-(kdswi*SWI5P)
+
+dIE/dt=-(Vaiep*IE*1.0/(Jaiep+IE))+(kiiep*IEP*1.0/(Jiiep+IEP))
+
+dIEP/dt=(Vaiep*IE*1.0/(Jaiep+IE))-(kiiep*IEP*1.0/(Jiiep+IEP))
+
+dCDC20i/dt=(ks20_p+ks20_pp*MCM1)-(Vd20*CDC20i)-((ka20_p+ka20_pp*IEP)*CDC20i)+(MAD2*CDC20)
+
+dCDC20/dt=(ka20_p+ka20_pp*IEP)*CDC20i-(MAD2*CDC20)-(Vd20*CDC20)
+
+dCDH1/dt=(kscdh)-(kdcdh*CDH1)-(Vicdh*CDH1*1.0/(Jicdh+CDH1))+(Vacdh*CDH1i*1.0/(Jacdh+CDH1i))
+
+dCDH1i/dt=(Vicdh*CDH1*1.0/(Jicdh+CDH1))-(Vacdh*CDH1i*1.0/(Jacdh+CDH1i))-(kdcdh*CDH1i)
+
+dCDC14/dt=(ks14)-(kd14*CDC14)-(kasrent*CDC14*NET1)+(kdirent*RENT)-(kasrentp*CDC14*NET1P)+(kdirentp*RENTP)+(kdnet*RENT)+(kdnet*RENTP)
+
+dNET1/dt=(ksnet)-(kdnet*NET1)-(Vkpnet*NET1)+(Vppnet*NET1P)-(kasrent*CDC14*NET1)+(kdirent*RENT)+(kd14*RENT)
+
+dRENT/dt=(kasrent*CDC14*NET1)-(kdirent*RENT)-(Vkpnet*RENT)+(Vppnet*RENTP)-(kdnet*RENT)-(kd14*RENT)
+
+dNET1P/dt=(Vkpnet*NET1)-(Vppnet*NET1P)-(kdnet*NET1P)-(kasrentp*CDC14*NET1P)+(kdirentp*RENTP)+(kd14*RENTP)
+
+dRENTP/dt=(kasrentp*CDC14*NET1P)-(kdirentp*RENTP)+(Vkpnet*RENT)-(Vppnet*RENTP)-(kdnet*RENTP)-(kd14*RENTP)
+
+dTEM1GDP/dt=-(LTE1*TEM1GDP*1.0/(Jatem+TEM1GDP))+(BUB2*TEM1GTP*1.0/(Jitem+TEM1GTP))
+
+dTEM1GTP/dt=(LTE1*TEM1GDP*1.0/(Jatem+TEM1GDP))-(BUB2*TEM1GTP*1.0/(Jitem+TEM1GTP))
+
+dCDC15i/dt=-((ka15_p*TEM1GDP+ka15_pp*TEM1GTP+ka15_ppp*CDC14)*CDC15i)+(ki15*CDC15)
+
+dCDC15/dt=(ka15_p*TEM1GDP+ka15_pp*TEM1GTP+ka15_ppp*CDC14)*CDC15i-(ki15*CDC15)
+
+dPDS1/dt=(kspds_p)-(Vdpds*PDS1)-(kasesp*PDS1*ESP1)+(kdiesp*PE)
+
+dESP1/dt=-(kasesp*PDS1*ESP1)+(kdiesp*PE)+(Vdpds*PE)
+
+dPE/dt=(kasesp*PDS1*ESP1)-(kdiesp*PE)-(Vdpds*PE)
+
+dORI/dt=(ksori*(eorib5*CLB5+eorib2*CLB2))-(kdori*ORI)
+
+dBUD/dt=(ksbud*(ebudn2*CLN2+ebudn3*CLN3+ebudb5*CLB5))-(kdbud*BUD)
+
+dSPN/dt=(ksspn*CLB2/(Jspn+CLB2))-(kdspn*SPN)
+
+dMAD2/dt=(0.0)
+
+dLTE1/dt=(0.0)
+
+dBUB2/dt=(0.0)
+
+dSWI4/dt=-(kas46*SWI4*SWI6)+(kdi46*SBFF)-((ksbs4*BCK2)*SWI4)+(kdbs4*SWI4F)-(kas46*SWI4*SWI6P)+(kdi46*SBFF6P)-(kas46*SWI4*SWI6PQ)+(kdi46*SBFF6PQ)-((ef4p*Vpclb)*SWI4)+(Vpp14*SWI4P)+ \
+(kimp*SWI4C)*(cytoplas/nucleus)
+
+dSWI6/dt=-(kas46*SWI4*SWI6)+(kdi46*SBFF)-((ef6p*Vpcln)*SWI6)+(Vppcln*SWI6P)-(kas46*SWI4P*SWI6)+(kdi46*SBFF4P)+(kimp*SWI6C)*(cytoplas/nucleus)-(kasmbf*MBP1*SWI6)+(kdimbf*MBFF)
+
+dWHI5/dt=-(kasws*WHI5*SBFF)+(kdiws*WSF)-(kasws*WHI5*SBFB)+(kdiws*WSB)-(kasw4*SWI4B*WHI5)+(kdiw4*W4B)-((ef5p*Vpclnw)*WHI5)+(Vppcln*WHI5PN)-(kasws*WHI5*SBFF6P)+(kdiws*WSF6P)-(kasws*WHI5*SBFF6PQ)+ \
+(kdiws*WSF6PQ)+(kimp*WHI5C)*(cytoplas/nucleus)-(kaswm*MBFa*WHI5)+(kdiwm*WMB)
+
+dMBP1/dt=-(kasmbf*MBP1*SWI6)+(kdimbf*MBFF)
+
+dPROM2/dt=-(kasprom*SBFF*PROM2)+(kdiprom*SBFB)-(kasprom*WSF*PROM2)+(kdiprom*WSB)-(kasprom*SWI4F*PROM2)+(kdiprom*SWI4B)+(ef4p*Vpclb)*SBFB+(ef4p*Vpclb)*SBFB6P+(ef4p*Vpclb)*SBFB6PQ+(ef4p*Vpclb)*WSB+ \
+(ef4p*Vpclb)*WSB5P+(ef4p*Vpclb)*WSB6P+(ef4p*Vpclb)*WSB6PQ+(Vpclb*SWI4B)
+
+dPROM5/dt=-(kasprom*MBFF*PROM5)+(kdiprom*MBFi)
+
+dNRM1/dt=(ksnrm1_p*MBFact)-(kdnrm1*NRM1)
+
+dSWI4C/dt=(MSN5*SBFF6PQ)*(nucleus/cytoplas)+(MSN5*WSF6PQ)*(nucleus/cytoplas)+(Vppase*SWI4PC)-(kimp*SWI4C)
+
+dSWI4PC/dt=(MSN5*SBFF46PQ)*(nucleus/cytoplas)+(MSN5*WSF46PQ)*(nucleus/cytoplas)+(MSN5*WSF45P)*(nucleus/cytoplas)-(Vppase*SWI4PC)
+
+dSWI4P/dt=-(kas46*SWI4P*SWI6)+(kdi46*SBFF4P)-(kas46*SWI4P*SWI6P)+(kdi46*SBFF46P)-(kas46*SWI4P*SWI6PQ)+(kdi46*SBFF46PQ)+(ef4p*Vpclb)*SWI4-(Vpp14*SWI4P)+(Vpclb*SWI4B)
+
+dSWI4B/dt=(kasprom*SWI4F*PROM2)-(kdiprom*SWI4B)-(kasw4*SWI4B*WHI5)+(kdiw4*W4B)+(ef5p*Vpclnw)*W4B-(Vpclb*SWI4B)
+
+dSWI4F/dt=(ksbs4*BCK2)*SWI4-(kdbs4*SWI4F)-(kasprom*SWI4F*PROM2)+(kdiprom*SWI4B)
+
+dW4B/dt=(kasw4*SWI4B*WHI5)-(kdiw4*W4B)-((ef5p*Vpclnw)*W4B)
+
+dSBFF/dt=(kas46*SWI4*SWI6)-(kdi46*SBFF)-(kasws*WHI5*SBFF)+(kdiws*WSF)-(kasprom*SBFF*PROM2)+(kdiprom*SBFB)-((ef6p*Vpcln)*SBFF)+(Vppcln*SBFF6P)+(kdiwp*WSF5P)-((ef4p*Vpclb)*SBFF)+(Vpp14*SBFF4P)
+
+dSBFF4P/dt=(kas46*SWI4P*SWI6)-(kdi46*SBFF4P)+(ef4p*Vpclb)*SBFF-(Vpp14*SBFF4P)+(Vppcln*SBFF46P)+(ef4p*Vpclb)*SBFB-((ef6p*Vpcln)*SBFF4P)
+
+dSBFF6P/dt=(ef6p*Vpcln)*SBFF-(Vppcln*SBFF6P)+(kdiwp*WSF56P)-((ef6q*Vpclb26)*SBFF6P)+(Vpp14*SBFF6PQ)+(kas46*SWI4*SWI6P)-(kdi46*SBFF6P)-(kasws*WHI5*SBFF6P)+(kdiws*WSF6P)-((ef4p*Vpclb)*SBFF6P)+ \
+(Vpp14*SBFF46P)
+
+dSBFF6PQ/dt=(ef6q*Vpclb26)*SBFF6P-(Vpp14*SBFF6PQ)+(kas46*SWI4*SWI6PQ)-(kdi46*SBFF6PQ)-(kasws*WHI5*SBFF6PQ)+(kdiws*WSF6PQ)-((ef4p*Vpclb)*SBFF6PQ)+(Vpp14*SBFF46PQ)-(MSN5*SBFF6PQ)
+
+dSBFF46P/dt=(kas46*SWI4P*SWI6P)-(kdi46*SBFF46P)+(ef4p*Vpclb)*SBFF6P-(Vpp14*SBFF46P)-(Vppcln*SBFF46P)-((ef6q*Vpclb26)*SBFF46P)+(Vpp14*SBFF46PQ)+(ef4p*Vpclb)*SBFB6P+(ef6p*Vpcln)*SBFF4P
+
+dSBFF46PQ/dt=(kas46*SWI4P*SWI6PQ)-(kdi46*SBFF46PQ)+(ef4p*Vpclb)*SBFF6PQ-(Vpp14*SBFF46PQ)+(ef6q*Vpclb26)*SBFF46P-(Vpp14*SBFF46PQ)+(ef4p*Vpclb)*SBFB6PQ-(MSN5*SBFF46PQ)
+
+dSBFB/dt=(kasprom*SBFF*PROM2)-(kdiprom*SBFB)-(kasws*WHI5*SBFB)+(kdiws*WSB)-((ef6p*Vpcln)*SBFB)+(Vppcln*SBFB6P)-((ef4p*Vpclb)*SBFB)
+
+dSBFB6P/dt=(ef6p*Vpcln)*SBFB-(Vppcln*SBFB6P)+(kdiwp*WSB56P)-((ef6q*Vpclb26)*SBFB6P)+(Vpp14*SBFB6PQ)-((ef4p*Vpclb)*SBFB6P)
+
+dSBFB6PQ/dt=(ef6q*Vpclb26)*SBFB6P-(Vpp14*SBFB6PQ)-((ef4p*Vpclb)*SBFB6PQ)
+
+dWSF/dt=(kasws*WHI5*SBFF)-(kdiws*WSF)-(kasprom*WSF*PROM2)+(kdiprom*WSB)-((ef5p*Vpclnw)*WSF)+(Vppcln*WSF5P)-((ef6p*Vpcln)*WSF)+(Vppcln*WSF6P)-((ef4p*Vpclb)*WSF)+(Vpp14*WSF4P)
+
+dWSF4P/dt=(ef4p*Vpclb)*WSF-(Vpp14*WSF4P)+(Vppcln*WSF46P)+(ef4p*Vpclb)*WSB-((ef6p*Vpcln)*WSF4P)-((ef5p*Vpclnw)*WSF4P)
+
+dWSF5P/dt=(ef5p*Vpclnw)*WSF-(Vppcln*WSF5P)-(kdiwp*WSF5P)
+
+dWSF6P/dt=(ef6p*Vpcln)*WSF-(Vppcln*WSF6P)-((ef5p*Vpclnw)*WSF6P)-((ef6q*Vpclb26)*WSF6P)+(Vpp14*WSF6PQ)+(kasws*WHI5*SBFF6P)-(kdiws*WSF6P)-((ef4p*Vpclb)*WSF6P)+(Vpp14*WSF46P)
+
+dWSF6PQ/dt=(ef6q*Vpclb26)*WSF6P-(Vpp14*WSF6PQ)+(kasws*WHI5*SBFF6PQ)-(kdiws*WSF6PQ)-((ef4p*Vpclb)*WSF6PQ)+(Vpp14*WSF46PQ)-(MSN5*WSF6PQ)
+
+dWSF45P/dt=(ef4p*Vpclb)*WSB5P-(MSN5*WSF45P)+(ef5p*Vpclnw)*WSF4P
+
+dWSF46P/dt=(ef4p*Vpclb)*WSF6P-(Vpp14*WSF46P)-(Vppcln*WSF46P)-((ef6q*Vpclb26)*WSF46P)+(Vpp14*WSF46PQ)+(ef4p*Vpclb)*WSB6P+(ef6p*Vpcln)*WSF4P
+
+dWSF46PQ/dt=(ef4p*Vpclb)*WSF6PQ-(Vpp14*WSF46PQ)+(ef6q*Vpclb26)*WSF46P-(Vpp14*WSF46PQ)+(ef4p*Vpclb)*WSB6PQ-(MSN5*WSF46PQ)
+
+dWSF56P/dt=(ef5p*Vpclnw)*WSF6P-(kdiwp*WSF56P)
+
+dWSB/dt=(kasprom*WSF*PROM2)-(kdiprom*WSB)+(kasws*WHI5*SBFB)-(kdiws*WSB)-((ef5p*Vpclnw)*WSB)+(Vppcln*WSB5P)-((ef6p*Vpcln)*WSB)+(Vppcln*WSB6P)-((ef4p*Vpclb)*WSB)
+
+dWSB5P/dt=(ef5p*Vpclnw)*WSB-(Vppcln*WSB5P)-((ef6p*Vpcln)*WSB5P)+(Vppcln*WSB56P)-((ef4p*Vpclb)*WSB5P)
+
+dWSB6P/dt=(ef6p*Vpcln)*WSB-(Vppcln*WSB6P)-((ef5p*Vpclnw)*WSB6P)+(Vppcln*WSB56P)-((ef6q*Vpclb26)*WSB6P)+(Vpp14*WSB6PQ)-((ef4p*Vpclb)*WSB6P)
+
+dWSB6PQ/dt=(ef6q*Vpclb26)*WSB6P-(Vpp14*WSB6PQ)-((ef4p*Vpclb)*WSB6PQ)
+
+dWSB56P/dt=(ef6p*Vpcln)*WSB5P-(Vppcln*WSB56P)+(ef5p*Vpclnw)*WSB6P-(Vppcln*WSB56P)-(kdiwp*WSB56P)
+
+dSWI6C/dt=(MSN5*WSF45P)*(nucleus/cytoplas)+(Vpp14*SWI6QC)-(kimp*SWI6C)
+
+dSWI6QC/dt=(Vppase*SWI6PQC)-(Vpp14*SWI6QC)
+
+dSWI6PQC/dt=(MSN5*SBFF6PQ)*(nucleus/cytoplas)+(MSN5*SBFF46PQ)*(nucleus/cytoplas)+(MSN5*WSF6PQ)*(nucleus/cytoplas)+(MSN5*WSF46PQ)*(nucleus/cytoplas)-(Vppase*SWI6PQC)
+
+dSWI6P/dt=(ef6p*Vpcln)*SWI6-(Vppcln*SWI6P)-((ef6q*Vpclb26)*SWI6P)+(Vpp14*SWI6PQ)-(kas46*SWI4*SWI6P)+(kdi46*SBFF6P)-(kas46*SWI4P*SWI6P)+(kdi46*SBFF46P)
+
+dSWI6PQ/dt=(ef6q*Vpclb26)*SWI6P-(Vpp14*SWI6PQ)-(kas46*SWI4*SWI6PQ)+(kdi46*SBFF6PQ)-(kas46*SWI4P*SWI6PQ)+(kdi46*SBFF46PQ)
+
+dMBFF/dt=(kasmbf*MBP1*SWI6)-(kdimbf*MBFF)-(kasprom*MBFF*PROM5)+(kdiprom*MBFi)
+
+dMBFi/dt=(kasprom*MBFF*PROM5)-(kdiprom*MBFi)-(Vpclnm*MBFi)+(Vppcln*MBFa)
+
+dMBFa/dt=(Vpclnm*MBFi)-(Vppcln*MBFa)-((kimbf01*CLB2)*MBFa)+(kmbf10*MBFp)-((kimbf02*NRM1)*MBFa)+(kmbf20*MBFo)-(kaswm*MBFa*WHI5)+(kdiwm*WMB)+(ef5p*Vpclnw)*WMB
+
+dMBFp/dt=(kimbf01*CLB2)*MBFa-(kmbf10*MBFp)-((kimbf02*NRM1)*MBFp)+(kmbf20*MBFpo)
+
+dMBFo/dt=(kimbf02*NRM1)*MBFa-(kmbf20*MBFo)-((kimbf01*CLB2)*MBFo)+(kmbf10*MBFpo)
+
+dMBFpo/dt=(kimbf01*CLB2)*MBFo-(kmbf10*MBFpo)+(kimbf02*NRM1)*MBFp-(kmbf20*MBFpo)
+
+dWMB/dt=(kaswm*MBFa*WHI5)-(kdiwm*WMB)-((ef5p*Vpclnw)*WMB)
+
+dWHI5PC/dt=(MSN5*WHI5PN)*(nucleus/cytoplas)+(MSN5*WSF45P)*(nucleus/cytoplas)-(Vpp14*WHI5PC)
+
+dWHI5C/dt=(MSN5*WSF6PQ)*(nucleus/cytoplas)+(MSN5*WSF46PQ)*(nucleus/cytoplas)+(Vpp14*WHI5PC)-(kimp*WHI5C)
+
+dWHI5PN/dt=(ef5p*Vpclnw)*W4B+(ef5p*Vpclnw)*WHI5-(Vppcln*WHI5PN)+(kdiwp*WSF5P)+(kdiwp*WSF56P)+(kdiwp*WSB56P)-(MSN5*WHI5PN)+(ef5p*Vpclnw)*WMB
+
+dTCYCLE/dt=(1.0)
+
+dORIFLAG/dt=(0.0)
+
+dTwhi5/dt=(0.0)
+
+dMwhi5/dt=(0.0)
+
+dTBUD/dt=(0.0)
+
+dMBUD/dt=(0.0)
+
+dTORI/dt=(0.0)
+
+dUDNA/dt=(0.0)
+
+dREPDNA/dt=(0.0)
+
+dTSPN/dt=(0.0)
+
+dSPNALIGN/dt=(0.0)
+
+dSACOFF/dt=(0.0)
+
+dMASSBIRT/dt=(0.0)
+
+dMitCat/dt=(0.0)
+
+
+#Implicit Species
+
+
+#Globals
+
+global -1 {CLB2 + CLB5 - KEZ2 - 0.0} {ORI=0.0;ORIFLAG=1.0}
+global 1 {WHI5cycf - 0.5} {Twhi5=TCYCLE;Mwhi5=MASS}
+global 1 {BUD - 1.0} {TBUD=TCYCLE;MBUD=MASS}
+global 1 {ORI - 1.0 - 0.0} {TORI=TCYCLE * ORIFLAG;UDNA=1.0 * ORIFLAG;MAD2=mad2h * ORIFLAG + mad2l * (1.0 - ORIFLAG);BUB2=bub2h * ORIFLAG + bub2l * (1.0 - ORIFLAG)}
+global 1 {TCYCLE - TORI - DNATIMER - 0.0} {REPDNA=UDNA;SACOFF=SPNALIGN * ORIFLAG;UDNA=0.0;ORIFLAG=0.0}
+global 1 {TCYCLE - TORI - DNATIMER - 0.0} {MAD2=mad2l * SACOFF + mad2h * (1.0 - SACOFF);BUB2=bub2l * SACOFF + bub2h * (1.0 - SACOFF);LTE1=lte1h * SACOFF + lte1l * (1.0 - SACOFF)}
+global 1 {SPN - 1.0 - 0.0} {SPNALIGN=1.0;TSPN=TCYCLE;SACOFF=REPDNA;MitCat=if (ESP1 > 0.1) then (1.0) else (0.0)}
+global 1 {SPN - 1.0 - 0.0} {MAD2=mad2l * SACOFF + mad2h * (1.0 - SACOFF);BUB2=bub2l * SACOFF + bub2h * (1.0 - SACOFF);LTE1=lte1h * SACOFF + lte1l * (1.0 - SACOFF)}
+global -1 {CLB2 - KEZ - 0.0} {MASS=F * MASS * REPDNA + MASS * (1.0 - REPDNA);LTE1=lte1l * REPDNA + LTE1 * (1.0 - REPDNA);BUD=0.0 + BUD * (1.0 - REPDNA);SPN=0.0 + SPN * (1.0 - REPDNA);TORI=1000.0 + TORI * (1.0 - REPDNA);TSPN=0.0 + TSPN * (1.0 - REPDNA);TBUD=0.0 + TBUD * (1.0 - REPDNA);Twhi5=0.0 + Twhi5 * (1.0 - REPDNA);MBUD=0.0 + MBUD * (1.0 - REPDNA);Mwhi5=0.0 + Mwhi5 * (1.0 - REPDNA);TCYCLE=0.0;SACOFF=0.0;SPNALIGN=0.0;REPDNA=0.0;MASSBIRT=MASS}
+
+#Settings
+
+init BUB2=0.2
+init BUD=0.0154110243593788
+init C2=0.197341247757461
+init C2P=0.0128083052673014
+init C5=0.0796549412241655
+init C5P=0.00476745860363818
+init CDC14=0.685695353660066
+init CDC15=0.652434722390971
+init CDC15i=0.347565277609012
+init CDC20=0.706006222058708
+init CDC20i=0.787592468079176
+init CDC6=0.133968163981639
+init CDC6P=0.035631491948781
+init CDH1=0.996005362927922
+init CDH1i=0.00399463707207933
+init CLB2=0.0694306531794237
+init CLB5=0.0767894202634312
+init CLN2=0.195608226760332
+init ESP1=0.520542070433101
+init F2=0.117541959300578
+init F2P=0.0280767101884002
+init F5=1.04809529563752E-4
+init F5P=2.1402315582442E-5
+init IE=0.51615152340183
+init IEP=0.483848476598174
+init LTE1=0.1
+init MAD2=0.01
+init MASS=1.13467475183963
+init MASSBIRT=1.12860662640626
+init MBFa=0.0
+init MBFF=0.0
+init MBFi=0.0
+init MBFo=0.0
+init MBFp=0.0
+init MBFpo=0.0
+init MBP1=5.5
+init MBUD=0.0
+init MitCat=0.0
+init Mwhi5=0.0
+init NET1=0.00656818878723094
+init NET1P=1.27912716487284
+init NRM1=0.0
+init ORI=0.0291412146656156
+init ORIFLAG=1.0
+init PDS1=0.0118584914876254
+init PE=0.479457929566942
+init PROM2=2.0
+init PROM5=2.0
+init RENT=0.643416336728071
+init RENTP=0.870888309611862
+init REPDNA=0.0
+init SACOFF=0.0
+init SBFB6P=0.0
+init SBFB6PQ=0.0
+init SBFB=0.0
+init SBFF46P=0.0
+init SBFF46PQ=0.0
+init SBFF4P=0.0
+init SBFF6P=0.0
+init SBFF6PQ=0.0
+init SBFF=0.0
+init SIC1=0.0368176074794449
+init SIC1P=0.00518981723970555
+init SPN=0.0325795571004625
+init SPNALIGN=0.0
+init SWI4=5.5
+init SWI4B=0.0
+init SWI4C=0.0
+init SWI4F=0.0
+init SWI4P=0.0
+init SWI4PC=0.0
+init SWI5=0.80343911939325
+init SWI5P=0.0170776220724791
+init SWI6=30.0
+init SWI6C=0.0
+init SWI6P=0.0
+init SWI6PQ=0.0
+init SWI6PQC=0.0
+init SWI6QC=0.0
+init TBUD=0.0
+init TCYCLE=0.72557268620405
+init TEM1GDP=0.123253068346797
+init TEM1GTP=0.876746931653158
+init TORI=1000.0
+init TSPN=0.0
+init Twhi5=0.0
+init UDNA=0.0
+init W4B=0.0
+init WHI5=10.0
+init WHI5C=0.0
+init WHI5PC=0.0
+init WHI5PN=0.0
+init WMB=0.0
+init WSB56P=0.0
+init WSB5P=0.0
+init WSB6P=0.0
+init WSB6PQ=0.0
+init WSB=0.0
+init WSF45P=0.0
+init WSF46P=0.0
+init WSF46PQ=0.0
+init WSF4P=0.0
+init WSF56P=0.0
+init WSF5P=0.0
+init WSF6P=0.0
+init WSF6PQ=0.0
+init WSF=0.0
+param BCK2T=0.075
+param bub2h=1.0
+param bub2l=0.2
+param cell=1.0
+param CLN3T=0.075
+param cytoplas=0.8
+param DNATIMER=20.0
+param ebudb5=0.5
+param ebudn2=0.28
+param ebudn3=0.25
+param ec1b2=0.4
+param ec1b5=0.23
+param ec1k2=0.0
+param ec1n2=0.09
+param ec1n3=0.0
+param ef4p=1.0
+param ef5p=1.0
+param ef6b2=1.5
+param ef6b5=0.45
+param ef6k2=0.0
+param ef6n2=0.23
+param ef6n3=0.0
+param ef6p=1.0
+param ef6q=1.0
+param eicdhb2=0.72
+param eicdhb5=4.2
+param eicdhn2=0.22
+param eicdhn3=0.0
+param eorib2=0.45
+param eorib5=0.85
+param epb5=0.07
+param epb5m=0.16
+param epb5q=1.0
+param epb5w=0.075
+param epk2=0.56
+param epk2m=0.61
+param epk2w=0.3
+param epn2=0.083
+param epn2m=0.04
+param epn2w=0.08
+param epn3=1.0
+param epn3m=1.0
+param epn3w=1.0
+param Jabck2=1.0
+param Jacdh=0.03
+param Jacln3=1.0
+param Jaiep=0.1
+param Jamcm=0.1
+param Jatem=0.1
+param Jd2c1=0.05
+param Jd2f6=0.05
+param Jibck2=1.0
+param Jicdh=0.032
+param Jicln3=1.0
+param Jiiep=0.1
+param Jimcm=0.1
+param Jitem=0.1
+param Jpn=0.4
+param Jspn=0.15
+param ka15_p=0.002
+param ka15_pp=1.0
+param ka15_ppp=0.001
+param ka20_p=0.06
+param ka20_pp=0.15
+param kacdh_p=0.01
+param kacdh_pp=0.55
+param kaiep=0.1
+param kamcm=1.0
+param kas46=30.0
+param kasb2=50.0
+param kasb5=30.0
+param kasbf1=0.14
+param kasbf3=1.0
+param kasbf4=1.0
+param kasbf5=1.0
+param kasbf6=0.11
+param kasesp=50.0
+param kasf2=15.0
+param kasf5=0.015
+param kasmbf=30.0
+param kasprom=50.0
+param kasrent=300.0
+param kasrentp=1.0
+param kasw4=0.0
+param kaswi=2.0
+param kaswm=1.5
+param kasws=30.0
+param kd14=0.1
+param kd1c1=0.01
+param kd1f6=0.01
+param kd20=0.255
+param kd20_p=0.05
+param kd2c1=1.0
+param kd2f6=1.0
+param kd3c1=1.0
+param kd3f6=1.0
+param kdb2_p=0.003
+param kdb2_pp=0.4
+param kdb2_ppp=0.285
+param kdb5_p=0.015
+param kdb5_pp=0.17
+param kdbs4=5.0
+param kdbud=0.06
+param kdc1=0.001
+param kdcdh=0.01
+param kdf6=0.001
+param kdi46=0.5
+param kdib2=0.05
+param kdib5=0.06
+param kdiesp=0.5
+param kdif2=0.5
+param kdif5=0.03
+param kdimbf=1.0
+param kdiprom=1.0
+param kdirent=1.0
+param kdirentp=1.6
+param kdiw4=1.0
+param kdiwm=1.0
+param kdiwp=15.0
+param kdiws=1.0
+param kdn2=0.14
+param kdnet=0.03
+param kdnrm1=0.08
+param kdori=0.06
+param kdpd_0001=0.03
+param kdpds_p=0.01
+param kdpds_pp=0.25
+param kdspn=0.06
+param kdswi=0.08
+param KEZ2=0.2
+param KEZ=0.3
+param kgalbck2=3.0
+param kgalcdc6=0.4
+param kgalclb2=0.38
+param kgalclb5=0.016
+param kgalcln2=0.165
+param kgalcln3=15.0
+param kgalsic1=0.132
+param kgkcln3=1.0
+param ki15=0.5
+param ki=40.0
+param kicdh_p=0.005
+param kicdh_pp=0.08
+param kiiep=0.15
+param kimbf01=0.6
+param kimbf02=1.2
+param kimcm=0.49
+param kimp=4.0
+param kiswi=0.1
+param kmbf10=0.12
+param kmbf20=0.12
+param kmcbck2=5.0
+param kmccdc6=5.0
+param kmcclb5=4.0
+param kmccln2=4.0
+param kmccln3=15.0
+param kmcsic1=4.0
+param kmcwhi5=10.0
+param kp_p=0.01
+param kp_pp=1.0
+param kpnet_p=0.01
+param kpnet_pp=2.4
+param kpp14=1.0
+param kpp=0.1
+param kppc1=4.0
+param kppcln=1.0
+param kppcln_p=0.5
+param kppf6=4.0
+param kppn_0001=2.8
+param kppnet_p=0.05
+param ks14=0.22
+param ks20_p=0.006
+param ks20_pp=0.6
+param ksb2_p=0.006
+param ksb2_pp=0.12
+param ksb5_p=2.0E-4
+param ksb5_pp=0.004
+param ksb5_ppp=0.04
+param ksbs4=5.0
+param ksbud=0.2
+param ksc1_p=0.0132
+param ksc1_pp=0.132
+param kscdh=0.01
+param ksf6_p=0.02
+param ksf6_pp=0.2
+param ksf6_ppp=0.004
+param ksn2_p=0.0
+param ksn2_pp=0.38
+param ksn2_ppp=0.3
+param ksnet=0.084
+param ksnrm1_p=0.08
+param ksori=1.5
+param kspds_p=0.07
+param kssa0=0.6
+param kssab2=0.5
+param kssaw5=7.0
+param ksspn=0.09
+param ksswi_p=0.005
+param ksswi_pp=0.08
+param kydj1=1.0
+param lte1h=1.0
+param lte1l=0.1
+param mad2h=8.0
+param mad2l=0.01
+param MAXMASS=28.0
+param mdt=90.0
+param MSN5=25.0
+param N=5.0
+param nucleus=0.2
+param PP2AT=1.0
+param PPase=1.0
+param Vnmaxw=3.0
+param Vpmaxm=5.8
+param Vpnmax=3.0
+param whi5op=10.0
+
+@ dt=1.0,total=500.0,maxstor=50000,bound=10000,toler=1.0E-4,njmp=1,t0=0.0,meth=stiff
+done
