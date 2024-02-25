@@ -1,4 +1,4 @@
-#Functions
+# Functions
 
 Mass_Act(k1)=k1
 Mass_0001(k1,S1)=k1 * S1
@@ -7,11 +7,11 @@ Michaeli(M1,J1,k1,S1)=k1 * M1 * S1 / (J1 + S1)
 BB(A1,A2,A3,A4)=A2 - A1 + A3 * A2 + A4 * A1
 GK(A1,A2,A3,A4)=2.0 * A4 * A1 / (BB(A1,A2,A3,A4) + (BB(A1,A2,A3,A4) ^ 2.0 - 4.0 * (A2 - A1) * A4 * A1)^.5)
 
-#Compartment Equations
+# Compartment Equations
 
 
-#Variables
-
+# Variables
+## Total variables
 T19=1.0*IEP+1.0*IE
 aux T19=T19
 T18=1.0*TEM1GDP+1.0*TEM1GTP
@@ -72,6 +72,22 @@ MBP1T=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*MBP1+1.0*WMB
 aux MBP1T=MBP1T
 SWI6T=1.0*MBFF+1.0*MBFa+1.0*MBFi+1.0*MBFo+1.0*MBFp+1.0*MBFpo+1.0*SBFB6PQ+1.0*SBFB6P+1.0*SBFB+1.0*SBFF46PQ+1.0*SBFF46P+1.0*SBFF4P+1.0*SBFF6PQ+1.0*SBFF6P+1.0*SBFF+4.0*SWI6C+4.0*SWI6PQC+1.0*SWI6PQ+1.0*SWI6P+4.0*SWI6QC+1.0*SWI6+1.0*WMB+1.0*WSB56P+1.0*WSB5P+1.0*WSB6PQ+1.0*WSB6P+1.0*WSB+1.0*WSF45P+1.0*WSF46PQ+1.0*WSF46P+1.0*WSF4P+1.0*WSF56P+1.0*WSF5P+1.0*WSF6PQ+1.0*WSF6P+1.0*WSF
 aux SWI6T=SWI6T
+CLB2T=CLB2+C2+F2+C2P+F2P
+aux CLB2T=CLB2T
+CLB5T=CLB5+C5+F5+C5P+F5P
+aux CLB5T=CLB5T
+CDC14T=CDC14+RENT+RENTP
+aux CDC14T=CDC14T
+NET1T=NET1+NET1P+RENT+RENTP
+aux NET1T=NET1T
+SIC1T=SIC1+C2+C5+SIC1P+C2P+C5P
+aux SIC1T=SIC1T
+CDC6T=CDC6+F2+F5+CDC6P+F2P+F5P
+aux CDC6T=CDC6T
+CKIT=SIC1T+CDC6T
+aux CKIT=CKIT
+
+## Other variables
 D=1.026/mu-32.0
 aux D=D
 F=exp((-mu)*D)
@@ -142,20 +158,8 @@ Vpclb26=kp_p+kp_pp*CLB2+epb5q*CLB5
 aux Vpclb26=Vpclb26
 Vppase=PPase
 aux Vppase=Vppase
-CLB2T=CLB2+C2+F2+C2P+F2P
-aux CLB2T=CLB2T
-CLB5T=CLB5+C5+F5+C5P+F5P
-aux CLB5T=CLB5T
-CDC14T=CDC14+RENT+RENTP
-aux CDC14T=CDC14T
-NET1T=NET1+NET1P+RENT+RENTP
-aux NET1T=NET1T
-SIC1T=SIC1+C2+C5+SIC1P+C2P+C5P
-aux SIC1T=SIC1T
-CDC6T=CDC6+F2+F5+CDC6P+F2P+F5P
-aux CDC6T=CDC6T
-CKIT=SIC1T+CDC6T
-aux CKIT=CKIT
+
+# Tracking combinations/fractions
 SBFact=kasbf1*SBFB+kasbf2*(SBFB6P+SBFB6PQ)+kasbf3*(WSB6P+WSB6PQ)+kasbf4*WSB5P+kasbf5*SWI4B
 aux SBFact=SBFact
 MBFact=MBFa
@@ -187,14 +191,14 @@ aux SWI6cycf=SWI6cycf
 CLN310x=10.0*CLN3
 aux CLN310x=CLN310x
 
-#Parameter Equations
+# Parameter Equations
 
 mu=(log(2.0))/mdt
 
-#Dependent Species
+# Dependent Species
 
 
-#Independent Species
+# Independent Species
 
 dMASS/dt=(mu*MASS*(1.0-MASS/MAXMASS))
 
@@ -415,10 +419,10 @@ dMASSBIRT/dt=(0.0)
 dMitCat/dt=(0.0)
 
 
-#Implicit Species
+# Implicit Species
 
 
-#Globals
+# Globals
 
 global -1 {CLB2 + CLB5 - KEZ2 - 0.0} {ORI=0.0;ORIFLAG=1.0}
 global 1 {WHI5cycf - 0.5} {Twhi5=TCYCLE;Mwhi5=MASS}
@@ -430,7 +434,7 @@ global 1 {SPN - 1.0 - 0.0} {SPNALIGN=1.0;TSPN=TCYCLE;SACOFF=REPDNA;MitCat=if (ES
 global 1 {SPN - 1.0 - 0.0} {MAD2=mad2l * SACOFF + mad2h * (1.0 - SACOFF);BUB2=bub2l * SACOFF + bub2h * (1.0 - SACOFF);LTE1=lte1h * SACOFF + lte1l * (1.0 - SACOFF)}
 global -1 {CLB2 - KEZ - 0.0} {MASS=F * MASS * REPDNA + MASS * (1.0 - REPDNA);LTE1=lte1l * REPDNA + LTE1 * (1.0 - REPDNA);BUD=0.0 + BUD * (1.0 - REPDNA);SPN=0.0 + SPN * (1.0 - REPDNA);TORI=1000.0 + TORI * (1.0 - REPDNA);TSPN=0.0 + TSPN * (1.0 - REPDNA);TBUD=0.0 + TBUD * (1.0 - REPDNA);Twhi5=0.0 + Twhi5 * (1.0 - REPDNA);MBUD=0.0 + MBUD * (1.0 - REPDNA);Mwhi5=0.0 + Mwhi5 * (1.0 - REPDNA);TCYCLE=0.0;SACOFF=0.0;SPNALIGN=0.0;REPDNA=0.0;MASSBIRT=MASS}
 
-#Settings
+# Settings
 
 init BUB2=0.2
 init BUD=0.0154110243593788
@@ -539,6 +543,8 @@ init WSF5P=0.0
 init WSF6P=0.0
 init WSF6PQ=0.0
 init WSF=0.0
+
+## Parameters
 param BCK2T=0.075
 param bub2h=1.0
 param bub2l=0.2
